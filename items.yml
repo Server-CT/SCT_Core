@@ -1,0 +1,18 @@
+#################################
+# Core Configuration File       #
+# @author SCT                   #
+# @create 2018/07/06 00:06      #
+# @lastupdate 2018/07/06 00:06  #
+# Copyright (C) 2018 Server CT  #
+# All Rights Reserved.          #
+#################################
+key:
+  type: 292
+  durability: 63
+  meta:
+    display: "&fsct欢迎你"
+    lore:
+    - "SCT欢迎你"
+    unbreak: true
+    enchants: ["DURABILITYx1", "KNOCKBACKx2-f", "DAMAGE_ALL"]
+    flags: ["HIDE_ENCHANTS", "HIDE_POTION_EFFECTS", "HIDE_ATTRIBUTES", "HIDE_UNBREAKABLE"]

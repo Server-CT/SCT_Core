@@ -1,0 +1,6 @@
+name: SCT_Core
+main: org.sct.core.Core
+author: ServerCT
+version: 1.1
+commands:
+  sctitem:
