@@ -56,20 +56,19 @@ public class ItemStackUtil {
      * @param lore 要设置的Lore
      */
 
-    public static void setLore(ItemStack is,int Line,String lore) {
+    public static ItemStack setLore(ItemStack is,int Line,String lore) {
         List <String> lores = new ArrayList<String>();
         if(is == null || is.getType() == Material.AIR) {
             throw new NullPointerException();
         }
         if(is.getItemMeta().hasLore()) {
+            ItemMeta itemMeta = is.getItemMeta();
             lores.addAll(is.getItemMeta().getLore());
             lores.add(Line, lore.replaceAll("&", "§"));
-            ItemMeta itemMeta = is.getItemMeta();
             itemMeta.setLore(lores);
             is.setItemMeta(itemMeta);
-        }else {
-            return;
         }
+        return is;
     }
 
     /**
@@ -119,6 +118,7 @@ public class ItemStackUtil {
                 break;
             }
             lore.set(lore.indexOf(old), newString);
+            break;
         }
         im.setLore(lore);
         is.setItemMeta(im);
@@ -210,12 +210,13 @@ public class ItemStackUtil {
      * @param player 玩家
      * @param amount 数量
      */
-    public static void setItemInHandAmount(Player player,int amount) {
+    public static ItemStack setItemInHandAmount(Player player,int amount) {
         if(player.getInventory().getItemInMainHand() == null || player.getInventory().getItemInMainHand().getType() == Material.AIR) {
-            return;
+            return null;
         }
         ItemStack is = player.getInventory().getItemInMainHand();
         is.setAmount(amount);
+        return is;
     }
 
     /**
@@ -253,7 +254,7 @@ public class ItemStackUtil {
         return item;
     }
 
-    public static void removeLore(ItemStack is,int Line,String lore) {
+    public static ItemStack removeLore(ItemStack is,int Line,String lore) {
         List <String> lores = new ArrayList<String>();
         if(is == null || is.getType() == Material.AIR) {
             throw new NullPointerException();
@@ -268,11 +269,11 @@ public class ItemStackUtil {
             ItemMeta itemMeta = is.getItemMeta();
             itemMeta.setLore(lores);
             is.setItemMeta(itemMeta);
-        }else {
-            return;
         }
+        return is;
     }
-    public static void removeLore(ItemStack is,int Line) {
+
+    public static ItemStack removeLore(ItemStack is,int Line) {
         List <String> lores = new ArrayList<String>();
         if(is == null || is.getType() == Material.AIR) {
             throw new NullPointerException();
@@ -283,9 +284,8 @@ public class ItemStackUtil {
             ItemMeta itemMeta = is.getItemMeta();
             itemMeta.setLore(lores);
             is.setItemMeta(itemMeta);
-        }else {
-            return;
         }
+        return is;
     }
 
 

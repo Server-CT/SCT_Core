@@ -1,11 +1,13 @@
 package org.sct.core.api;
 
+import org.bukkit.ChatColor;
 import org.sct.core.file.FileTool;
 import org.sct.core.service.SCTService;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import org.sct.core.util.BungeeUtil;
 import org.sct.core.util.TellrawUtil;
 import org.bukkit.inventory.ItemStack;
 
@@ -86,6 +88,40 @@ public class SctApi {
         } else {
             p.sendMessage("§c物品不存在");
         }
+    }
+
+    /**
+     * 给Bungee玩家发送信息
+     *
+     * @param player 玩家TCP连接
+     * @param text 信息
+     */
+    public static void sendMessageToBungeePlayers(Player player, String text) {
+
+        text = ChatColor.translateAlternateColorCodes('&', text);
+
+        BungeeUtil.sendPluginMessage(player, "ChatBar", text);
+
+    }
+
+    /**
+     * 给Bungee玩家发送Title
+     *
+     * @param player   玩家TCP连接
+     * @param title    标题
+     * @param subTitle 副标题
+     */
+    public static void sendTitleToBungeePlayers(Player player, String title, String subTitle) {
+
+        title = ChatColor.translateAlternateColorCodes('&', title);
+        subTitle = ChatColor.translateAlternateColorCodes('&', subTitle);
+
+        StringBuilder builder = new StringBuilder(title);
+        builder.append("[MessageAPI]");
+        builder.append(subTitle);
+
+        BungeeUtil.sendPluginMessage(player, "Title", builder.toString());
+
     }
 
 }

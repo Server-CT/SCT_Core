@@ -1,6 +1,9 @@
 package org.sct.core.util;
 
+import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,6 +165,29 @@ public class BasicUtil {
         UUID uuid = null;
         uuid = Bukkit.getPlayer(name).getUniqueId();
         return uuid;
+    }
+
+    /**
+     * 取服务器在线玩家
+     *
+     * @return 玩家集合
+     */
+    public static List<Player> getOnlinePlayers() {
+        // 实例化两个List用于存放Player和World
+        List<Player> players = Lists.newArrayList();
+        List<World> worlds = Lists.newArrayList();
+        worlds.addAll(Bukkit.getWorlds());
+        // 遍历所有的世界
+        for (int i = 0; i < worlds.size(); i++) {
+            // 如果第i个世界的玩家是空的则进行下一次循环
+            if (worlds.get(i).getPlayers().isEmpty()) {
+                continue;
+            } else {
+                // 不是空的则添加到players集合中
+                players.addAll(worlds.get(i).getPlayers());
+            }
+        }
+        return players;
     }
 
 }

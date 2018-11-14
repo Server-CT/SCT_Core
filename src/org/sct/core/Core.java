@@ -4,6 +4,7 @@ import org.sct.core.command.newCommand;
 import org.sct.core.file.FileTool;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.sct.core.listener.bungee.PluginMessageListener;
 
 import java.io.*;
 
@@ -24,8 +25,8 @@ public class Core extends JavaPlugin {
     public static int versionNum = 200;
 
     public Core() {
-        if (plugin == null) plugin = this;
-        else throw new NullPointerException("Hahhah, surprise mother fucker!");
+        if (plugin == null)  { plugin = this; }
+        else { throw new NullPointerException("Hahhah, surprise mother fucker!"); }
     }
 
 
@@ -33,6 +34,9 @@ public class Core extends JavaPlugin {
     public void onEnable() {
         isSentConsoleMsg = getConfig().getBoolean("isSentConsoleMsg");
         load();
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "MessageAPIBukkitData");
+        // 收入通道
+        getServer().getMessenger().registerIncomingPluginChannel(this, "MessageAPIBungeeData", new PluginMessageListener());
         Bukkit.getServer().getConsoleSender().sendMessage("SCTItem加载成功!");
         getServer().getPluginCommand("sctitem").setExecutor(new newCommand());
         try {
