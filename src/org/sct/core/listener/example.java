@@ -11,6 +11,7 @@ public class example implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
         SctApi.sendTellraw(SctApi.createTellraw("显示信息").addHover("测试", "点击执行命令").excuteCommand("/test"), e.getPlayer());
+       // SctApi.sendTellraw(SctApi.createTellraw("测试").addHover("t");
         SctApi.sendTellraw(SctApi.createTellraw("显示信息").addHover("测试", "点击补全命令").showCommandInChatBar("/test"), e.getPlayer());
     }
 
