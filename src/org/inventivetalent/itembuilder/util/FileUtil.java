@@ -28,9 +28,6 @@ import java.lang.reflect.Field;
 
 /**
  *
- * 本来上面应该有两行东西的，但是出了点纰漏
- * 所以乱码了，所以我删了
- * 作者是沉寂，非本人原创
  * @author ChenJi_
  *
  */
